@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Munger Compendium — Mental Models for Thinking Clearly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5EFDD;
+    --paper-2: #ECE5CE;
+    --paper-deep: #E0D8BD;
+    --rule: #C9BC97;
+    --ink: #14110D;
+    --ink-soft: #2A2620;
+    --muted: #6E6452;
+    --oxblood: #6B1F2A;
+    --oxblood-deep: #4A1219;
+    --gold: #A8842B;
+    --gold-deep: #806320;
+    --green: #2D5A3D;
+    --amber: #B5860E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 19px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 15% 5%, rgba(168,132,43,0.05) 0%, transparent 35%),
+      radial-gradient(circle at 85% 95%, rgba(107,31,42,0.04) 0%, transparent 45%);
+  }
+
+  /* ========== COVER ========== */
+  .cover {
+    min-height: 65vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 80px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--ink);
+    position: relative;
+  }
+
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px;
+    border: 1px solid var(--gold);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  .cover-crest {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    text-align: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 50px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--oxblood);
+    font-weight: 400;
+  }
+
+  .cover .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.35;
+  }
+
+  .ornament {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--gold);
+    letter-spacing: 0.5em;
+    margin: 30px 0;
+  }
+
+  .cover-attribution {
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 2;
+    margin-top: auto;
+  }
+
+  .cover-attribution strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--oxblood);
+    margin-top: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  /* ========== CONTAINER ========== */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 80px;
+  }
+
+  /* ========== EDITOR'S NOTE ========== */
+  .editors-note {
+    margin: 60px 0;
+    padding: 28px 36px;
+    background: var(--paper-2);
+    border-left: 4px solid var(--gold);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .editors-note strong {
+    font-family: 'Inter Tight', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  /* ========== INTRODUCTION ========== */
+  .introduction {
+    margin: 70px 0;
+  }
+
+  .introduction h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  .introduction p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+    color: var(--ink-soft);
+  }
+
+  .introduction p.lede {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .introduction p:first-of-type::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 78px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 12px 0 0;
+    color: var(--oxblood);
+    font-weight: 700;
+  }
+
+  /* ========== TABLE OF CONTENTS ========== */
+  .toc {
+    margin: 70px 0;
+    padding: 40px 50px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .toc::before {
+    content: "Contents";
+    position: absolute;
+    top: -16px;
+    left: 40px;
+    background: var(--paper);
+    padding: 0 18px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--oxblood);
+  }
+
+  .toc-part {
+    margin: 28px 0 12px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .toc-part:first-child { margin-top: 0; }
+
+  .toc ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .toc li {
+    padding: 6px 0;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px dotted var(--rule);
+  }
+
+  .toc li:last-child { border-bottom: none; }
+
+  .toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    flex: 1;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover { color: var(--oxblood); }
+
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    margin-right: 16px;
+    min-width: 28px;
+    font-weight: 600;
+  }
+
+  /* ========== PART HEADERS ========== */
+  .part-header {
+    margin: 100px 0 60px;
+    text-align: center;
+    page-break-before: always;
+  }
+
+  .part-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .part-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .part-header h2 em {
+    font-style: italic;
+    color: var(--oxblood);
+  }
+
+  .part-header .description {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .part-header .divider {
+    margin: 30px auto;
+    width: 200px;
+    border-top: 1px solid var(--gold);
+    position: relative;
+  }
+
+  .part-header .divider::after {
+    content: "◆";
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--paper);
+    padding: 0 8px;
+    color: var(--gold);
+    font-size: 13px;
+  }
+
+  /* ========== MODEL SECTIONS ========== */
+  .model {
+    margin: 70px 0;
+    scroll-margin-top: 30px;
+  }
+
+  .model-header {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+
+  .model-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .model h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    flex: 1;
+  }
+
+  .model h3 em {
+    font-style: italic;
+    color: var(--oxblood);
+    font-weight: 400;
+  }
+
+  .model h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    font-weight: 700;
+    margin: 32px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .model p {
+    margin-bottom: 18px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-size: 19px;
+  }
+
+  .model p strong { color: var(--ink); font-weight: 600; }
+  .model p em { font-style: italic; color: var(--ink); }
+
+  .model ul, .model ol {
+    margin: 14px 0 22px 28px;
+    color: var(--ink-soft);
+  }
+
+  .model li {
+    margin-bottom: 10px;
+    line-height: 1.65;
+    font-size: 18px;
+  }
+
+  /* ========== QUOTES ========== */
+  .quote {
+    margin: 32px 0;
+    padding: 28px 40px;
+    background: rgba(107, 31, 42, 0.06);
+    border-left: 4px solid var(--oxblood);
+    position: relative;
+  }
+
+  .quote::before {
+    content: "“";
+    position: absolute;
+    top: 6px;
+    left: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--oxblood);
+    line-height: 1;
+    opacity: 0.25;
+  }
+
+  .quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0 0 14px 32px;
+  }
+
+  .quote cite {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--oxblood);
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 32px;
+  }
+
+  /* ========== APPLICATION BOX ========== */
+  .application {
+    margin: 24px 0;
+    padding: 22px 28px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .application-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .application p {
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .application p:last-child { margin-bottom: 0; }
+
+  /* ========== EXAMPLE BLOCK ========== */
+  .example {
+    margin: 24px 0;
+    padding: 22px 28px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--green);
+  }
+
+  .example-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .example p {
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 1.65;
+  }
+
+  /* ========== TENDENCIES TABLE (compact for 25 list) ========== */
+  .tendency {
+    margin: 22px 0;
+    padding: 22px 28px;
+    background: var(--paper);
+    border-left: 3px solid var(--oxblood);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tendency-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+
+  .tendency-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 600;
+    min-width: 32px;
+  }
+
+  .tendency-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .tendency-name em {
+    font-style: italic;
+    color: var(--oxblood);
+  }
+
+  .tendency p {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .tendency p:last-child { margin-bottom: 0; }
+
+  .tendency-example {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--oxblood-deep);
+    padding: 8px 12px;
+    background: rgba(107, 31, 42, 0.04);
+    border-left: 2px solid var(--oxblood);
+    margin-top: 10px;
+    font-size: 16px !important;
+  }
+
+  /* ========== ORNAMENTAL DIVIDER ========== */
+  hr.divider {
+    border: none;
+    height: 32px;
+    margin: 60px 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 24'><line x1='10' y1='12' x2='58' y2='12' stroke='%23A8842B' stroke-width='0.5'/><path d='M70 6 L77 12 L70 18 L63 12 Z' fill='none' stroke='%23A8842B' stroke-width='1'/><line x1='82' y1='12' x2='130' y2='12' stroke='%23A8842B' stroke-width='0.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 240px 24px;
+  }
+
+  /* ========== EPILOGUE ========== */
+  .epilogue {
+    margin: 100px 0 60px;
+    padding: 50px 60px;
+    background: linear-gradient(135deg, #4A1219 0%, #2A0810 100%);
+    color: var(--paper);
+    position: relative;
+  }
+
+  .epilogue::before {
+    content: "";
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 1px solid rgba(168, 132, 43, 0.3);
+    pointer-events: none;
+  }
+
+  .epilogue h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1.1;
+    color: var(--paper);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .epilogue p {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--paper-2);
+    margin-bottom: 18px;
+  }
+
+  .epilogue p.lede {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    text-align: center;
+    color: var(--paper);
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .epilogue .signature {
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    margin: 80px auto 50px;
+    max-width: 920px;
+    padding: 40px 80px 0;
+    border-top: 3px double var(--ink);
+    text-align: center;
+  }
+
+  .footer-mark {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--oxblood);
+    margin-bottom: 14px;
+  }
+
+  .footer-attribution {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .footer-disclaimer {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 920px) {
+    .cover { padding: 40px 28px 30px; }
+    .cover h1 { font-size: 52px; }
+    .cover .subtitle { font-size: 18px; }
+    .container { padding: 0 28px; }
+    .toc { padding: 28px 24px; }
+    .part-header h2 { font-size: 36px; }
+    .model h3 { font-size: 28px; }
+    .quote { padding: 22px 24px; }
+    .quote p { font-size: 18px; margin-left: 20px; }
+    .epilogue { padding: 36px 28px; }
+    .epilogue h2 { font-size: 28px; }
+    .footer { padding: 40px 28px 0; }
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .model { page-break-inside: avoid; }
+    .part-header { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-crest">A Reference for Decision-Making</div>
+  <div>
+    <h1>The <em>Munger</em><br>Compendium</h1>
+    <p class="subtitle">A practical reference of the mental models, psychological tendencies, and life principles developed by Charlie Munger over seven decades of thinking carefully about how things actually work.</p>
+    <div class="ornament">◆ &nbsp;&nbsp; ◆ &nbsp;&nbsp; ◆</div>
+  </div>
+  <div class="cover-attribution">
+    A Synthesis of Documented Frameworks<br>
+    <strong>Charles T. Munger, 1924–2023</strong>
+  </div>
+</header>
+
+<main class="container">
+
+<!-- ============ EDITOR'S NOTE ============ -->
+<div class="editors-note">
+  <strong>A Note on This Document</strong>
+  This compendium synthesizes the mental models, psychological observations, and decision-making principles documented across Charlie Munger's public writings, his Harvard Law speech of June 1995 ("The Psychology of Human Misjudgment," later expanded), the collection <em>Poor Charlie's Almanack</em>, Berkshire Hathaway and Wesco shareholder meetings, his chairmanship of the Daily Journal Corporation, and decades of recorded interviews. The synthesis prose draws on his analytical style; the boxed quotations are documented quotes from his published record. This is a reference work organized for daily use, not a biography or a substitute for reading his original writings — which are well worth your time.
+</div>
+
+<!-- ============ INTRODUCTION ============ -->
+<section class="introduction">
+  <h2>On Thinking About Thinking</h2>
+  <p class="lede">The world will not be navigated successfully by people who refuse to learn how it actually works.</p>
+
+  <p>The premise of this collection is straightforward. The human mind is a wonderful instrument, but it is also a treacherous one. It is subject to systematic errors, fooled by surface appearance, captured by tribal loyalty, distorted by what it has recently seen, and persuaded by what it merely wishes to believe. These errors are not occasional aberrations of foolish people. They are built-in features of the cognitive machinery that every one of us carries around, and they fire reliably whether the carrier is a Nobel laureate or the man pushing the broom.</p>
+
+  <p>The remedy is not to be more clever. The remedy is to know in advance where the mind goes wrong, to install discipline against the predictable failure modes, and to think with a latticework of useful models drawn from every important discipline — physics, biology, psychology, economics, accounting, history — so that no single model dominates and no single error gets the chance to compound.</p>
+
+  <p>What follows is a compendium of those models. There are perhaps a hundred of them that matter, and you do not have to invent any of them yourself. They have been worked out by people who came before, and they are available for the modest price of paying attention.</p>
+
+  <p>The objective is not to be brilliant. The objective is to be reliably less stupid than the competition. That is a more achievable goal, and over a long enough horizon, it compounds into something that looks, from the outside, like wisdom.</p>
+</section>
+
+<!-- ============ TABLE OF CONTENTS ============ -->
+<nav class="toc">
+  <div class="toc-part">Part I · The Meta-Framework</div>
+  <ul>
+    <li><span class="toc-num">01</span><a href="#m01">The Latticework of Mental Models</a></li>
+    <li><span class="toc-num">02</span><a href="#m02">Multidisciplinary Thinking</a></li>
+    <li><span class="toc-num">03</span><a href="#m03">The Lollapalooza Effect</a></li>
+  </ul>
+
+  <div class="toc-part">Part II · Decision-Making Models</div>
+  <ul>
+    <li><span class="toc-num">04</span><a href="#m04">Circle of Competence</a></li>
+    <li><span class="toc-num">05</span><a href="#m05">Inversion — "Always Invert"</a></li>
+    <li><span class="toc-num">06</span><a href="#m06">First-Principles Thinking</a></li>
+    <li><span class="toc-num">07</span><a href="#m07">Opportunity Cost</a></li>
+    <li><span class="toc-num">08</span><a href="#m08">Margin of Safety</a></li>
+    <li><span class="toc-num">09</span><a href="#m09">Second-Order Consequences</a></li>
+    <li><span class="toc-num">10</span><a href="#m10">Long-Term Compounding</a></li>
+    <li><span class="toc-num">11</span><a href="#m11">Take a Simple Idea and Take It Seriously</a></li>
+  </ul>
+
+  <div class="toc-part">Part III · The 25 Psychological Tendencies</div>
+  <ul>
+    <li><span class="toc-num">12</span><a href="#tendencies">The Psychology of Human Misjudgment</a></li>
+  </ul>
+
+  <div class="toc-part">Part IV · Investment Principles</div>
+  <ul>
+    <li><span class="toc-num">13</span><a href="#m13">Quality Businesses with Durable Moats</a></li>
+    <li><span class="toc-num">14</span><a href="#m14">Sit-on-Your-Ass Investing</a></li>
+    <li><span class="toc-num">15</span><a href="#m15">Act Decisively When Opportunity Comes</a></li>
+    <li><span class="toc-num">16</span><a href="#m16">Avoid Stupidity Rather Than Seek Brilliance</a></li>
+    <li><span class="toc-num">17</span><a href="#m17">Wonderful Business at Fair Price</a></li>
+    <li><span class="toc-num">18</span><a href="#m18">The Power of Incentives</a></li>
+  </ul>
+
+  <div class="toc-part">Part V · Life Principles</div>
+  <ul>
+    <li><span class="toc-num">19</span><a href="#m19">Avoid Envy, Resentment, and Self-Pity</a></li>
+    <li><span class="toc-num">20</span><a href="#m20">Be Reliable, Useful, and Trustworthy</a></li>
+    <li><span class="toc-num">21</span><a href="#m21">Spend Each Day Trying to Be Wiser</a></li>
+    <li><span class="toc-num">22</span><a href="#m22">Read Constantly</a></li>
+    <li><span class="toc-num">23</span><a href="#m23">Earn What You're Paid</a></li>
+    <li><span class="toc-num">24</span><a href="#m24">Take the High Road — It's Less Crowded</a></li>
+    <li><span class="toc-num">25</span><a href="#m25">Live to 100 and Still Want to Know More</a></li>
+  </ul>
+</nav>
+
+<!-- ============ PART I ============ -->
+<section class="part-header">
+  <div class="part-label">Part One</div>
+  <h2>The <em>Meta-Framework</em></h2>
+  <div class="divider"></div>
+  <p class="description">Before any specific model, the architecture: how multiple frameworks fit together into a coherent system of thought, and why no single model is ever sufficient.</p>
+</section>
+
+<!-- ============ MODEL 1 ============ -->
+<article class="model" id="m01">
+  <div class="model-header">
+    <span class="model-num">01</span>
+    <h3>The Latticework of <em>Mental Models</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>You've got to have models in your head. And you've got to array your experience — both vicarious and direct — on this latticework of models.</p>
+    <cite>— USC Business School commencement, 1994</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The world is too complex to navigate with a single discipline's tools. The economist who knows only economics will miss the psychological cause. The engineer who knows only engineering will miss the incentive distortion. The lawyer who knows only law will misread the human dynamic. A latticework is the deliberate construction of a mental library drawn from many fields — physics, biology, psychology, economics, accounting, statistics, history, engineering, mathematics, philosophy — so that whichever model best fits a situation is available when needed.</p>
+
+  <p>The models do not need to be exhaustive. They need to be the <em>big</em> models from each field — the ones that explain the most with the least, the ones that recur. Perhaps eighty to a hundred such models, properly understood, will carry most of the freight of practical decision-making for a lifetime.</p>
+
+  <h4>How it works in practice</h4>
+  <p>When examining a business, a problem, or a decision, the latticework user asks: which models apply here? Often, multiple do. The investor analyzing a consumer brand might draw simultaneously on (a) the psychological model of conditioned association, (b) the economic model of scale economies, (c) the accounting model of working capital intensity, and (d) the biological model of the spread of behavior through populations. Each lens reveals what the others miss.</p>
+
+  <h4>Why it matters</h4>
+  <p>The cost of operating with one or two models is high and largely hidden. You will systematically misjudge situations whose dominant dynamics fall outside your borrowed lens. To the man with only a hammer, every problem looks like a nail — and to the man with only economic models, every problem looks like a price-and-quantity adjustment. The latticework is what prevents this.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Start with a few foundational models from disciplines outside your professional training. If you are a finance professional, learn the basics of evolutionary biology, cognitive psychology, and thermodynamics. If you are a physician, learn the fundamentals of statistical reasoning, behavioral economics, and accounting. The objective is not expertise in every field — it is fluency in the central organizing ideas of each, so that the relevant model surfaces when the situation calls for it.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 2 ============ -->
+<article class="model" id="m02">
+  <div class="model-header">
+    <span class="model-num">02</span>
+    <h3>Multidisciplinary <em>Thinking</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>If you skillfully follow the multidisciplinary path, you will never want to come back. It would be like cutting off your hands.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Multidisciplinary thinking is the practical operation of the latticework. It is the habit of crossing field boundaries deliberately, taking the most powerful idea from each discipline and using it where it actually fits — including in fields whose specialists have never thought to apply it.</p>
+
+  <p>The deeper observation is that real-world problems do not respect academic boundaries. A business failure may involve a chemistry problem (a product that degrades), a psychological problem (a sales team's incentive structure), a mathematical problem (compounded inventory miscalculations), and a sociological problem (the gradual erosion of institutional culture) — all at once. The specialist sees only his own piece. The multidisciplinary thinker sees the whole.</p>
+
+  <h4>Why specialists struggle</h4>
+  <p>Disciplinary specialization is rewarded in academia and in professions, and it produces deep but narrow knowledge. The trouble is that important decisions almost never align cleanly with a single discipline's territory. The economist's model of the market does not include the psychological reality that humans copy what other humans are doing. The accountant's model of the firm does not include the engineering reality that some processes have non-linear failure modes. The lawyer's model of the contract does not include the behavioral reality that people will quietly route around incentives they find unjust.</p>
+
+  <h4>How to apply it</h4>
+  <p>Read widely in the central texts of disciplines outside your own. Not surveys — central texts. Darwin, Adam Smith, Hardy's <em>A Mathematician's Apology</em>, Feynman's lectures, Cialdini on influence, Kahneman on judgment, Diamond on geography and history, Drucker on management. Each gives you a few enormous ideas that recur everywhere. The point is not to become an expert in any of these fields. The point is to acquire the highest-leverage ideas from each.</p>
+</article>
+
+<!-- ============ MODEL 3 ============ -->
+<article class="model" id="m03">
+  <div class="model-header">
+    <span class="model-num">03</span>
+    <h3>The Lollapalooza <em>Effect</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Really big effects, lollapalooza effects, will often come only from large combinations of factors.</p>
+    <cite>— Harvard Law School Class Day, 1995</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The Lollapalooza Effect is the disproportionate outcome that occurs when multiple psychological or causal forces operate in the same direction simultaneously. Each individual force might produce only a modest result. But when three, four, or five forces converge — each reinforcing the others — the combined effect is not additive. It is multiplicative, and sometimes explosive.</p>
+
+  <h4>The Coca-Cola example</h4>
+  <p>The classic illustration is the brand power of Coca-Cola, which Munger analyzed extensively in his 1996 talk "Practical Thought About Practical Thought?" The product combines: (1) caffeine, a mildly addictive stimulant; (2) sugar, which delivers a measurable pleasure response; (3) cold temperature, which the human nervous system experiences as refreshing; (4) carbonation, which adds a sensory cue; (5) operant conditioning, since the consumer is rewarded each time; (6) classical Pavlovian conditioning, via decades of association with celebration, sport, and happiness; (7) social proof, since the consumer sees others drinking it everywhere; and (8) availability, since the product is sold in nearly every retail outlet on the planet.</p>
+
+  <p>Each factor alone is modest. Together they produce one of the most successful consumer franchises in commercial history. That is the Lollapalooza.</p>
+
+  <h4>Why it matters</h4>
+  <p>The Lollapalooza Effect explains why some decisions are catastrophically bad and some are extraordinarily good. The dangerous version is the convergence of multiple errors — a stock-market bubble combines social proof, envy, reciprocation, doubt-avoidance, and overoptimism into a single pathological behavior. The beneficial version is recognizing when multiple forces are quietly working in your favor and sizing your commitment accordingly.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>When examining a decision that feels unusually compelling or unusually frightening, list the underlying forces. If you find three or four or five of them reinforcing each other, you are looking at a Lollapalooza situation. Whether to lean in or step back depends on whether the forces are operating in service of your judgment or in violation of it. The pattern recognition is the same; the response depends on the direction.</p>
+  </div>
+</article>
+
+<hr class="divider">
+
+<!-- ============ PART II ============ -->
+<section class="part-header">
+  <div class="part-label">Part Two</div>
+  <h2>Decision-Making <em>Models</em></h2>
+  <div class="divider"></div>
+  <p class="description">The specific frameworks used to evaluate opportunities, weigh risks, allocate capital, and decide what is worth doing and what is not.</p>
+</section>
+
+<!-- ============ MODEL 4 ============ -->
+<article class="model" id="m04">
+  <div class="model-header">
+    <span class="model-num">04</span>
+    <h3>Circle of <em>Competence</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Knowing what you don't know is more useful than being brilliant.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The Circle of Competence is the honest mapping of what you actually understand versus what you merely think you understand. Inside the circle, you have genuine competence — the ability to assess what matters, predict relevant outcomes within reasonable bounds, and recognize when a situation is changing. Outside the circle, you are a tourist with a credit card.</p>
+
+  <p>The critical insight is that the <em>size</em> of the circle matters far less than knowing precisely where its edges are. A modest circle, honestly defined, beats a large circle with fuzzy borders every time. The investor who confidently understands ten businesses has an enormous advantage over the investor who vaguely understands a hundred.</p>
+
+  <h4>Why people get this wrong</h4>
+  <p>The natural tendency is to expand the circle's claimed perimeter to match one's ambition. The cardiologist invests in restaurants because he ate at one once. The software entrepreneur buys oil futures because he read a newsletter. The retiree trades currencies because the broker said it was easy. In each case, the actual circle has not expanded — only the claim has. Reality eventually corrects the discrepancy, often expensively.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — Munger's documented practice</div>
+    <p>Throughout his career, Munger refused to invest in technology businesses he did not understand at a deep level. He did not buy Microsoft in the 1990s, did not own Intel, did not chase the internet boom. The acknowledged price was missing extraordinary returns. The acknowledged benefit was never being destroyed by the dot-com collapse that wiped out investors who pretended to understand businesses they did not.</p>
+    <p>His later interest in BYD (the Chinese electric vehicle and battery maker) is sometimes cited as a counter-example. It was not — Munger studied the business and the founder (Wang Chuanfu) carefully for years, with the help of partners who did understand the technology, and made the investment only when the circle had been genuinely expanded.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>List the businesses, industries, or domains you can honestly say you understand. Be ruthless. Understanding means: you can name the three or four factors that determine whether the enterprise will be more valuable in ten years than it is today, and you can assess each factor without consulting an outside expert. If you cannot do this, the domain is outside your circle. Operate within the circle. Expand it only by study, not by enthusiasm.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 5 ============ -->
+<article class="model" id="m05">
+  <div class="model-header">
+    <span class="model-num">05</span>
+    <h3>Inversion — <em>Always Invert</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Invert, always invert. Turn a situation or problem upside down. Look at it backward. What happens if all our plans go wrong? Where don't we want to go, and how do you get there?</p>
+    <cite>— Documented public remark, after Carl Jacobi</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Inversion is the deliberate practice of attacking a problem from its opposite end. Instead of asking "How do I succeed?" — ask "How would I most certainly fail?" Instead of "How do I make money?" — ask "How would I reliably lose it?" Instead of "How do I make my marriage happy?" — ask "What would predictably destroy it?"</p>
+
+  <p>The method comes from the 19th-century German mathematician Carl Gustav Jacobi, who advised solving difficult problems by inversion: <em>man muss immer umkehren</em>. Munger generalized the practice into a universal cognitive tool. The reason it works is that the universe of ways to fail is often clearer, more enumerable, and more avoidable than the universe of ways to succeed.</p>
+
+  <h4>Why it works</h4>
+  <p>Direct problem-solving favors the obvious paths and the most-traveled roads. Inversion exposes the hidden landmines. A young person asking "how do I have a successful career" gets a thousand competing answers. The same person asking "how would I reliably destroy my career" gets a clear, short list: be unreliable, learn nothing new, undermine colleagues, drink too much, marry badly, lie casually, fail to compound. Avoiding these is more tractable than seeking some elusive recipe for success.</p>
+
+  <div class="example">
+    <div class="example-label">Applied to investing</div>
+    <p>Rather than asking "what stocks should I buy to outperform" — ask "what reliably destroys investors?" The list is short and well-documented: paying too much for fashionable assets, using borrowed money in risky positions, frequent trading, holding businesses you do not understand, panic-selling at bottoms, refusing to admit error, chasing recent winners. An investor who systematically avoids these is already beating most professionals — not because they did anything clever, but because they refused to do specific stupid things.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>For any important decision, write the question two ways. First the direct form: "How do I achieve X?" Then the inverted form: "How would I most reliably fail to achieve X?" Spend more time on the inverted version. The list of failures is usually shorter, more concrete, and more actionable. Eliminating the predictable failures often leaves success as the residual.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 6 ============ -->
+<article class="model" id="m06">
+  <div class="model-header">
+    <span class="model-num">06</span>
+    <h3>First-Principles <em>Thinking</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>First-principles thinking is the discipline of reasoning from foundational truths rather than from analogy, convention, or borrowed authority. The first-principles thinker asks: what do we actually know? What is the fundamental physics or economics or psychology at work here? What follows if I reason forward from those facts, rather than from "this is how it has been done"?</p>
+
+  <p>Most thinking is by analogy. Most of the time, this is a good shortcut — life is too short to derive every conclusion from first principles. But in important decisions, especially those involving novel situations or large stakes, the analogical shortcut fails because the surface similarity to past situations conceals fundamental differences.</p>
+
+  <h4>The contrast with conventional thinking</h4>
+  <p>Conventional thinking proceeds: "Companies like this have historically traded at X multiple. This company is similar. Therefore X multiple is correct." First-principles thinking proceeds: "What does this business actually do? What are the cash flows it can realistically generate? What is the cost of capital? What must the multiple be to deliver an adequate return? Is the market's current price consistent with that calculation, or is it an artifact of analogical reasoning we should not respect?"</p>
+
+  <p>The first-principles answer is sometimes the same as the conventional answer. When it is different, the first-principles answer is almost always more reliable — and the gap is where opportunity tends to live.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>When facing a significant decision, write down the actual physical, economic, and psychological mechanisms at work. Strip away the convention, the precedent, the "what everyone says." Reason forward from the mechanisms. If your conclusion matches the conventional view, fine — you have validated convention by independent derivation. If your conclusion differs, examine the difference carefully. Either you have missed something the convention captures, or the convention has missed something you have noticed. Either outcome is valuable.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 7 ============ -->
+<article class="model" id="m07">
+  <div class="model-header">
+    <span class="model-num">07</span>
+    <h3>Opportunity <em>Cost</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Opportunity cost is a huge filter in life. If you've got two suitors who are really eager to have you, but one is way the hell better than the other, you do not have to spend much time with the other.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The cost of any choice is not its sticker price. The cost is the value of the next-best alternative foregone. The dollar spent on Investment A is a dollar not spent on Investment B; the year devoted to Career C is a year not devoted to Career D; the relationship maintained with Person E is the attention not given to Person F.</p>
+
+  <p>This sounds elementary, but the elementary truth is routinely violated. Most decisions are made by comparing an option to zero ("should I do this?") rather than by comparing it to the best alternative ("compared to what?"). The first question almost always produces a yes, because most opportunities have some merit. The second question is more demanding and more useful.</p>
+
+  <h4>The investment application</h4>
+  <p>For an investor, the opportunity-cost frame is decisive. The question is never "is this stock attractive?" — almost any stock has some attractive feature. The question is "is this stock more attractive than my next-best alternative, after risk-adjustment and after considering the value of holding cash for an even better opportunity that might appear?" When framed this way, most "interesting" opportunities fail to clear the bar. The discipline is to wait for the ones that do.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — Berkshire's bar</div>
+    <p>Berkshire Hathaway's investment criteria, refined over decades, are essentially an opportunity-cost filter. Each potential deployment of capital is compared not to zero but to (a) buying more of an existing portfolio holding, (b) buying back Berkshire stock at an attractive price, or (c) holding cash for an even better opportunity. The bar is high because the alternatives are real. Most opportunities do not clear it. The rare ones that do receive enormous commitments.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Before any significant commitment of money, time, or attention, articulate what you are giving up. Write the alternative explicitly. If the alternative is "doing nothing" — that is rarely the actual alternative. The actual alternative is usually "doing something better," and the discipline is to identify what that something better is before committing to the current option.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 8 ============ -->
+<article class="model" id="m08">
+  <div class="model-header">
+    <span class="model-num">08</span>
+    <h3>Margin of <em>Safety</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The margin of safety, inherited from Benjamin Graham and central to the Buffett-Munger doctrine, is the practice of demanding a buffer between price paid and value estimated, so that errors in judgment do not lead to ruinous outcomes. Buy at a discount large enough that even if your analysis is wrong by some reasonable margin, you do not lose money in real terms.</p>
+
+  <p>The principle generalizes beyond investing. Build the bridge to carry three times the maximum expected load. Borrow at half the level your cash flow can comfortably service. Plan for the recession even when the economy is roaring. The margin of safety is the deliberate construction of resilience into systems that will inevitably face conditions worse than expected.</p>
+
+  <h4>Why it matters most when things look easy</h4>
+  <p>Margin of safety is easiest to abandon when the market or the situation appears to be cooperating. The investor in 1999, the homebuyer in 2007, the leveraged-buyout sponsor in 2007 — each was operating in conditions that seemed to make safety margins unnecessary, because nothing had gone wrong recently. This is exactly when margins matter most. Conditions revert. Crises arrive on schedules that have nothing to do with anyone's expectation. The margin is the difference between surviving the crisis and being destroyed by it.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>For any significant commitment, model not just the expected case but a meaningfully worse case. Ask: if the assumptions on which I am relying turn out to be wrong by 30%, am I ruined or merely disappointed? If ruined, the position is too large or the cushion too thin, regardless of how compelling the central case appears. Adjust until disappointment is the worst outcome you can imagine.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 9 ============ -->
+<article class="model" id="m09">
+  <div class="model-header">
+    <span class="model-num">09</span>
+    <h3>Second-Order <em>Consequences</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>And then what?</p>
+    <cite>— The question Munger taught analysts to ask, repeatedly</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Most analysis stops at the first-order effect. A tax cut puts more money in people's pockets — first-order effect, generally positive. A minimum wage increase raises the lowest paychecks — first-order effect, generally positive. A new regulation requires safer products — first-order effect, generally positive. But each of these decisions has second-order effects (and third, and fourth) that may dwarf the first-order benefit. The tax cut increases deficits, which raises interest rates, which crowds out private investment. The minimum wage reduces employment for the least-skilled workers. The new regulation creates incumbent advantages that suppress competition.</p>
+
+  <p>The discipline of asking "and then what?" — and continuing to ask it for several more iterations — is what distinguishes serious analysis from shallow advocacy.</p>
+
+  <h4>Why people stop at first-order</h4>
+  <p>First-order effects are visible, immediate, and intuitive. Second-order effects are delayed, distributed, and counter-intuitive. They are also frequently the opposite of the first-order effect they followed. This is why public policy debates so often produce results contrary to the announced intent, and why investment theses based on first-order reasoning so often fail.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — the rising commodity price</div>
+    <p>An oil price spike is, in first-order terms, bad for oil consumers and good for oil producers. The second-order analysis is more interesting. High prices stimulate exploration, which increases future supply, which depresses future prices. High prices accelerate substitution — electric vehicles, energy efficiency, alternative fuels — which permanently reduces demand. High prices encourage rent-seeking by governments, which destabilizes producer countries. The producer who borrows aggressively against current high prices to expand capacity is destroyed when the second-order forces reverse the first-order conditions.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>After identifying the first-order effect of any decision or development, write the words "and then what?" and keep going. Most analyses fail not because the first-order reasoning is wrong but because it is incomplete. Three or four iterations of "and then what?" will often produce a conclusion materially different from the first-order assessment.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 10 ============ -->
+<article class="model" id="m10">
+  <div class="model-header">
+    <span class="model-num">10</span>
+    <h3>Long-Term <em>Compounding</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>The first rule of compounding: Never interrupt it unnecessarily.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Compounding is the mathematical mechanism by which small advantages, sustained over long horizons, produce outsized outcomes. Money compounds; knowledge compounds; reputation compounds; relationships compound. The mathematics is the same in each case: a small rate of growth, applied repeatedly to the prior result, produces exponential rather than linear accumulation.</p>
+
+  <p>The deceptive feature of compounding is that for most of its operation, the results look modest. The compounding curve is nearly flat for the first half of its life. The dramatic returns appear only at the end, when the accumulated base has grown large enough that ordinary percentage gains produce extraordinary absolute additions. Most people, observing the early flat period, lose patience and switch strategies — interrupting the compounding before it has a chance to deliver.</p>
+
+  <h4>The practical implications</h4>
+  <p>Sustained compounding requires three things: a reasonable rate of return (it does not have to be spectacular), a long horizon (it does have to be long), and the absence of catastrophic interruption (a single ruinous loss can erase decades of compounding). Note that the rate of return is the least important variable. A modest rate sustained for fifty years produces more than a spectacular rate sustained for fifteen.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Identify what you want to compound — financial wealth, professional capability, depth of knowledge in a chosen domain, the quality of your closest relationships. Then identify what would interrupt the compounding. Eliminate or reduce those interruptions. The discipline is not to be brilliant at any particular moment. The discipline is to refuse to interrupt the process unnecessarily, year after year, for decades.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 11 ============ -->
+<article class="model" id="m11">
+  <div class="model-header">
+    <span class="model-num">11</span>
+    <h3>Take a Simple Idea <em>and Take It Seriously</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Take a simple idea and take it seriously.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The most powerful ideas in any discipline are usually simple. They are not simple because their inventors were unsophisticated; they are simple because the human mind, in its better moments, has the capacity to compress reality into elegant generalizations. Newton's three laws. Darwin's natural selection. Smith's invisible hand. Each is statable in a single sentence. Each generated centuries of consequence.</p>
+
+  <p>The practical point is that taking a simple idea seriously — really seriously, applying it to every relevant situation, defending it against the temptation to add unnecessary complication — is more productive than collecting a thousand sophisticated ideas none of which one has internalized. Most of what passes for sophisticated thinking is the avoidance of the disciplined application of a simple truth.</p>
+
+  <h4>Examples of simple ideas worth taking seriously</h4>
+  <ul>
+    <li><strong>Incentives drive behavior.</strong> If the outcome surprises you, look at the incentive structure first.</li>
+    <li><strong>Compound interest is powerful.</strong> Time horizon matters more than rate.</li>
+    <li><strong>Most people are not as good as they appear.</strong> Most situations are not as good as they appear. Discount accordingly.</li>
+    <li><strong>The world is not arranged for your benefit.</strong> Plan accordingly.</li>
+    <li><strong>Reading is the cheapest way to acquire someone else's expensive lessons.</strong> Read more.</li>
+  </ul>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Identify the three or four ideas you most genuinely believe to be true and useful. Not the ideas you'd cite in conversation — the ones that actually inform your behavior when no one is watching. For each, ask: am I consistently acting on this idea, or am I treating it as a slogan? The gap between profession and practice is where most of the work is.</p>
+  </div>
+</article>
+
+<hr class="divider">
+
+<!-- ============ PART III ============ -->
+<section class="part-header" id="tendencies">
+  <div class="part-label">Part Three</div>
+  <h2>The Twenty-Five Psychological <em>Tendencies</em></h2>
+  <div class="divider"></div>
+  <p class="description">Munger's catalogue of the systematic errors built into human cognition — first presented at Harvard Law School in 1995, refined over the following decade, and the single most original contribution to applied behavioral science from any non-academic thinker of his generation.</p>
+</section>
+
+<article class="model">
+  <p>What follows is a condensed reference to the twenty-five tendencies Munger identified as the most consequential failure modes of human judgment. Each is real, each is documented, and each affects the reader of this document along with everyone else. The objective is not to eliminate these tendencies — they cannot be eliminated, since they are features of the cognitive hardware — but to recognize them when they fire and to install procedural defenses against the most dangerous ones.</p>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">01</span><span class="tendency-name">Reward and Punishment <em>Superresponse Tendency</em></span></div>
+    <p>Humans respond to incentives more powerfully and more reliably than to almost any other input — including reason, evidence, or stated principle. Show me the incentive and I will show you the outcome. When an outcome surprises you, the incentive structure is almost always where the explanation lives.</p>
+    <p class="tendency-example">Application: When evaluating any organization, person, or system, examine the incentives before listening to the stated motivations. The two often differ; the incentives are the predictor.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">02</span><span class="tendency-name">Liking / Loving <em>Tendency</em></span></div>
+    <p>Humans naturally form attachments — to people, products, institutions, ideas, places — and once attached, distort their perception in favor of the liked object. We ignore faults in those we like, exaggerate the merits of brands we feel loyal to, and accept arguments uncritically from people we admire.</p>
+    <p class="tendency-example">Application: When you find yourself defending something, ask whether you would defend it as vigorously if a stranger had presented the same facts. If not, liking is doing the work, not analysis.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">03</span><span class="tendency-name">Disliking / Hating <em>Tendency</em></span></div>
+    <p>The mirror image of the above. Once we dislike a person, idea, or institution, we systematically discount their merits and amplify their faults. The disliked figure cannot be right about anything; their occasional accurate observations are ignored or attributed to bad motives.</p>
+    <p class="tendency-example">Application: Ask whether you would accept an argument made by your friend if it were instead made by your opponent. If not, dislike is interfering with the assessment.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">04</span><span class="tendency-name">Doubt-Avoidance <em>Tendency</em></span></div>
+    <p>The mind dislikes the uncomfortable state of doubt and rushes to resolve it — often by accepting the first plausible answer, regardless of whether better answers exist. The discomfort of "I don't know" drives premature conviction.</p>
+    <p class="tendency-example">Application: When facing a decision with genuine uncertainty, sit with the uncertainty deliberately. The reward for premature resolution is comfort; the cost is being wrong.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">05</span><span class="tendency-name">Inconsistency-Avoidance <em>Tendency</em></span></div>
+    <p>Once a belief is publicly committed to, the mind defends it long after the underlying evidence has shifted. This is the engine of "commitment and consistency" exploited by Robert Cialdini's research on persuasion. Stated positions become self-reinforcing prisons.</p>
+    <p class="tendency-example">Application: Be cautious about public commitments to positions you have not deeply examined. Once committed, you will find yourself defending the position rather than evaluating it.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">06</span><span class="tendency-name">Curiosity <em>Tendency</em></span></div>
+    <p>One of the few cognitive tendencies that consistently helps rather than harms. The curious mind continues to learn, to ask why, to question convention. This is the great compounder of intellectual life and the principal defense against most other psychological tendencies.</p>
+    <p class="tendency-example">Application: Cultivate genuine curiosity about how things work, not merely about what they are. Curiosity is the only tendency on this list that you should deliberately amplify rather than guard against.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">07</span><span class="tendency-name">Kantian Fairness <em>Tendency</em></span></div>
+    <p>Humans display an instinct for fairness — they will sacrifice personal advantage to punish unfairness, even when the punishment costs them more than the original unfairness did. The Ultimatum Game demonstrates this experimentally; ordinary life demonstrates it constantly.</p>
+    <p class="tendency-example">Application: When designing organizations, compensation, or social arrangements, do not assume people will tolerate visibly unfair structures even when those structures are economically rational from a narrow viewpoint. The fairness instinct will route around them.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">08</span><span class="tendency-name">Envy / Jealousy <em>Tendency</em></span></div>
+    <p>Envy is the most destructive of the major psychological tendencies and arguably the most under-discussed. People care less about their absolute condition than about their condition relative to peers. Markets, careers, and entire industries are driven by envy more than by need. As Munger observed: it is not greed that drives the world, but envy.</p>
+    <p class="tendency-example">Application: Recognize envy in yourself when it operates, and refuse to act on it. The decisions made under envy's influence are nearly always destructive to the actor.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">09</span><span class="tendency-name">Reciprocation <em>Tendency</em></span></div>
+    <p>Humans return favors, return slights, and return aggression in approximate measure. This is the foundation of cooperation and also the lever exploited by manipulation. The free sample, the unexpected gift, the calculated favor — each activates a reciprocation impulse that overrides cleaner judgment.</p>
+    <p class="tendency-example">Application: Be conscious of who is "giving" to you and what they are likely to expect in return. The gift that activates reciprocation is rarely free in any meaningful sense.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">10</span><span class="tendency-name">Influence-from-Mere-Association <em>Tendency</em></span></div>
+    <p>The Pavlovian mechanism. Two things experienced together become associated in the mind even when there is no causal connection. The product advertised alongside happiness becomes happiness; the politician photographed with success becomes success. The mind builds associative networks without consulting the rational layer.</p>
+    <p class="tendency-example">Application: When you find yourself attracted to or repelled by something for reasons you cannot articulate, examine the associations. The feeling is often produced by Pavlovian wiring rather than considered judgment.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">11</span><span class="tendency-name">Simple, Pain-Avoiding Psychological <em>Denial</em></span></div>
+    <p>When reality is too painful to accept, the mind refuses to accept it. The bereaved parent who continues setting the missing child's place at dinner; the addict who insists the addiction is under control; the investor who refuses to mark down a losing position because doing so would acknowledge the error. Denial is automatic and powerful.</p>
+    <p class="tendency-example">Application: When evidence accumulates that something you believed is false, examine whether you are actually engaging the evidence or merely repeating the original belief in new words.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">12</span><span class="tendency-name">Excessive Self-Regard <em>Tendency</em></span></div>
+    <p>People consistently rate themselves above average in skill, judgment, and virtue. Most drivers consider themselves above-average drivers; most CEOs consider themselves above-average operators; most investors consider themselves above-average pickers. Mathematically, most cannot be right.</p>
+    <p class="tendency-example">Application: Calibrate your self-assessment by examining your track record rather than your self-image. The track record is data; the self-image is fiction maintained by ego.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">13</span><span class="tendency-name">Overoptimism <em>Tendency</em></span></div>
+    <p>Closely related to excessive self-regard. People consistently overestimate the probability of good outcomes and underestimate the probability of bad ones. The startup founder who believes their product will succeed; the new homeowner who does not budget for major repairs; the investor who expects continued bull-market returns. Overoptimism is the default human cognitive setting.</p>
+    <p class="tendency-example">Application: When making forecasts, deliberately consider what could go wrong and weight those scenarios more heavily than your intuition suggests. The intuition is biased upward; the correction must be downward.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">14</span><span class="tendency-name">Deprival-Superreaction <em>Tendency</em></span></div>
+    <p>Loss aversion. The pain of losing $100 exceeds the pleasure of gaining $100 by roughly a factor of two. The behavioral implication: people will take irrational risks to avoid losses, will hold losing positions hoping to break even, and will be more cautious about giving up something they already have than about acquiring something they don't.</p>
+    <p class="tendency-example">Application: Recognize that the pain of admitting a loss is biasing you toward holding it. The market does not care what you paid; the only relevant question is whether the current price is justified by future prospects.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">15</span><span class="tendency-name">Social-Proof <em>Tendency</em></span></div>
+    <p>When uncertain, humans look to others — particularly others who appear similar or authoritative — to decide what to do. This is rational under some conditions but catastrophic when applied to crowded trades, financial bubbles, or the herd movements of social media. The crowd is sometimes right; it is often spectacularly wrong.</p>
+    <p class="tendency-example">Application: When you find yourself doing something because others are doing it, ask whether you would do it if no one else were. If not, social proof is making the decision, not your judgment.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">16</span><span class="tendency-name">Contrast-Misreaction <em>Tendency</em></span></div>
+    <p>The mind judges things relative to nearby comparisons rather than against absolute standards. The $5,000 watch seems reasonable after the salesperson shows the $50,000 one. The 30% loss seems acceptable next to the 50% loss someone else suffered. Real-estate agents and luxury retailers have built entire industries on this tendency.</p>
+    <p class="tendency-example">Application: Evaluate decisions against absolute standards — what you actually want, what something is actually worth — rather than against the manipulable comparison set the situation presents.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">17</span><span class="tendency-name">Stress-Influence <em>Tendency</em></span></div>
+    <p>Acute stress impairs judgment. Mild stress can sharpen attention, but beyond a modest level, stress narrows perception, accelerates decisions, and amplifies whichever tendency happens to be operating. Decisions made under acute stress are systematically worse than decisions made calm.</p>
+    <p class="tendency-example">Application: Recognize that important decisions made during crises are likely to be poor decisions. When possible, defer significant choices until the stress level has subsided.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">18</span><span class="tendency-name">Availability-Misweighing <em>Tendency</em></span></div>
+    <p>The mind treats whatever is most easily recalled as if it were the most important or most probable. Recent news, vivid stories, and emotionally charged events crowd out statistically relevant but less memorable information. People fear plane crashes more than car accidents despite the data; investors fear the most recent crisis even when the next will be different.</p>
+    <p class="tendency-example">Application: When estimating probabilities or importance, consult data rather than memory. Memory weights vivid over statistical, and the two are not the same.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">19</span><span class="tendency-name">Use-It-or-Lose-It <em>Tendency</em></span></div>
+    <p>Skills atrophy when unused. The medical student who learns biochemistry and never applies it forgets most of it within years. The same is true of analytical capabilities, languages, and physical fitness. Whatever is not exercised regularly is gradually surrendered.</p>
+    <p class="tendency-example">Application: Identify the skills you most need to retain and build deliberate practice into your routine. Without practice, expertise erodes invisibly until the moment you need it, when you discover it is gone.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">20</span><span class="tendency-name">Drug-Misinfluence <em>Tendency</em></span></div>
+    <p>Chemical substances — alcohol, prescription medications, recreational drugs, even excessive caffeine — alter cognition in ways the user typically does not perceive. The most dangerous feature is that intoxicated judgment includes the conviction that judgment is unimpaired.</p>
+    <p class="tendency-example">Application: Distrust judgments made under chemical influence, including the judgment that you are not impaired. The impairment includes the assessment of impairment.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">21</span><span class="tendency-name">Senescence-Misinfluence <em>Tendency</em></span></div>
+    <p>Cognitive abilities decline with age, but the decline is gradual and the affected individual rarely perceives it. Continued learning and engagement slow the decline; disengagement accelerates it. The mind that stops working ages faster than the body that stops working.</p>
+    <p class="tendency-example">Application: Treat continued mental engagement as a non-negotiable practice as you age. The alternative is decline that you will not notice but that everyone around you will.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">22</span><span class="tendency-name">Authority-Misinfluence <em>Tendency</em></span></div>
+    <p>Humans defer to authority figures more than reasoned analysis would support. The Milgram experiments demonstrated this in extreme form; everyday life demonstrates it constantly. The doctor's diagnosis, the professor's opinion, the boss's judgment — each is accorded weight beyond its actual reliability.</p>
+    <p class="tendency-example">Application: Ask whether the authority figure's claim would convince you if it came from someone with no authority. The argument should stand on its merits, not on the source's title.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">23</span><span class="tendency-name">Twaddle <em>Tendency</em></span></div>
+    <p>Humans generate enormous quantities of meaningless verbiage and tend to take it seriously when packaged appropriately. Corporate jargon, academic obfuscation, political rhetoric, financial euphemism — each is twaddle that occupies cognitive space the listener could use for genuine thought.</p>
+    <p class="tendency-example">Application: When you cannot restate a claim in plain language, suspect that the claim has no content. Plain language is the test of whether thought has occurred.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">24</span><span class="tendency-name">Reason-Respecting <em>Tendency</em></span></div>
+    <p>People comply with requests more readily when given any reason — even a meaningless one. The famous photocopier experiment by Ellen Langer showed that "may I cut in line, because I have to make copies?" worked nearly as well as "may I cut in line, because I'm in a hurry?" The presence of the word "because" matters more than what follows it.</p>
+    <p class="tendency-example">Application: Be conscious of whether you are persuaded by a reason because it is sound or merely because the reason-giving ritual has been performed. The two are different operations.</p>
+  </div>
+
+  <div class="tendency">
+    <div class="tendency-head"><span class="tendency-num">25</span><span class="tendency-name">Lollapalooza <em>Tendency</em></span></div>
+    <p>The combined operation of multiple psychological tendencies acting in the same direction simultaneously, producing outcomes far larger than any single tendency could explain. The dot-com bubble, the housing bubble of 2007, the crowd at a destructive political rally, the cult — each is a Lollapalooza of converging tendencies. (See Model 03 for the full treatment.)</p>
+    <p class="tendency-example">Application: When you find yourself in a situation where unusual behavior seems normal, count the tendencies operating. Three or more in concert is a warning sign. Five or more is a near-certainty of poor judgment, your own included.</p>
+  </div>
+</article>
+
+<hr class="divider">
+
+<!-- ============ PART IV ============ -->
+<section class="part-header">
+  <div class="part-label">Part Four</div>
+  <h2>Investment <em>Principles</em></h2>
+  <div class="divider"></div>
+  <p class="description">The application of the foregoing models to the specific discipline of allocating capital — the operating principles that built Berkshire Hathaway, the Daily Journal Corporation, and Wesco Financial.</p>
+</section>
+
+<!-- ============ MODEL 13 ============ -->
+<article class="model" id="m13">
+  <div class="model-header">
+    <span class="model-num">13</span>
+    <h3>Quality Businesses with <em>Durable Moats</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>An economic moat is a sustainable competitive advantage that protects a business's returns on capital from being eroded by competition. The four primary sources of durable moats are: (1) scale economies producing unit-cost advantages, (2) network effects making the product more valuable as more people use it, (3) switching costs making it expensive for customers to leave, and (4) intangible assets such as brand, regulatory licenses, or proprietary technology.</p>
+
+  <p>The central insight is that without a moat, competition eventually drives returns on capital down to the cost of capital — no matter how attractive the business looks today. With a durable moat, high returns can persist for decades. The investor's task is to identify moats that are real, durable, and underpriced.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — See's Candies, 1972</div>
+    <p>The Berkshire purchase of See's Candies in 1972 for $25 million is the classic moat investment. See's had — and still has — extraordinary pricing power in its California consumer base, supported by brand association, distribution scale, and product quality consistency. The business has produced over $2 billion in pre-tax earnings for Berkshire over the subsequent five decades on essentially the same physical footprint. Munger has described this acquisition as the moment he and Buffett finally understood that paying a fair price for a quality business beats paying a cheap price for a mediocre one.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>For any business under consideration, ask three questions. First: what specifically prevents competitors from replicating this enterprise's success? Second: how durable is that protection — measured in years, not quarters? Third: am I paying a price that earns me an adequate return even if the moat erodes somewhat over the holding period? Honest answers to these three questions filter out most "great companies" and leave the rare ones worth committing capital to.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 14 ============ -->
+<article class="model" id="m14">
+  <div class="model-header">
+    <span class="model-num">14</span>
+    <h3>Sit-on-Your-Ass <em>Investing</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>The big money is not in the buying and selling, but in the waiting.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Most investors lose more to activity than to bad ideas. The frequent trader pays commissions, taxes, and the bid-ask spread on every transaction, while subjecting the portfolio to the cumulative effect of dozens or hundreds of decisions that need only one to be a fatal error. The "sit on your ass" approach, by contrast, makes only the small number of decisions an investor can genuinely make well — and then refrains from disturbing them.</p>
+
+  <p>The disciplined version: identify a small number of genuinely excellent businesses, buy them at sensible prices, hold them for years or decades, and resist the constant temptation to trade. The compounding does the work. The investor's principal contribution is the refusal to interrupt the compounding.</p>
+
+  <h4>Why it is harder than it sounds</h4>
+  <p>The psychological and institutional pressures against inactivity are enormous. The financial industry is built on activity — it cannot charge fees on positions that no one is rearranging. The financial media celebrate movement. Even friends and family interpret "doing nothing" as inattention. The sit-on-your-ass investor must accept that they will appear, for long stretches, to be doing nothing — even when the appearance is exactly the point.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Limit your portfolio to positions you would be willing to hold for at least five years without trading. If you would not hold for five years, the position is a trade, not an investment, and should be classified honestly as such. The discipline is not perfection — it is the refusal to allow trading impulses to disturb a portfolio constructed for compounding.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 15 ============ -->
+<article class="model" id="m15">
+  <div class="model-header">
+    <span class="model-num">15</span>
+    <h3>Act Decisively <em>When Opportunity Comes</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The corollary to sitting still most of the time is acting decisively when the rare genuine opportunity appears. Markets do not offer attractive prices on a schedule. They offer them in bursts — during crises, during panics, during the moments when most investors are paralyzed by fear or distracted by something else. The investor who has been patient is rewarded only if they retain the capacity to act when the moment arrives.</p>
+
+  <p>The combination — extreme patience punctuated by extreme decisiveness — is what separates the great investors from the merely active ones. The mediocre investor is moderately busy all the time. The great investor is largely inactive, then occasionally enormously committed.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — Berkshire in 2008</div>
+    <p>During the 2008 financial crisis, when most institutional investors were either selling forced positions or paralyzed by uncertainty, Berkshire Hathaway deployed approximately $20 billion in opportunistic investments — Goldman Sachs preferred stock at attractive terms, General Electric preferred stock at attractive terms, the purchase of Burlington Northern Santa Fe at a sensible price. Each was made possible by Berkshire's structural preparation: enormous cash reserves built during the years when markets offered nothing attractive, plus the institutional discipline to deploy when others could not.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Build dry powder during boring markets. Define in advance the conditions under which you would deploy it — specific price levels, specific quality criteria, specific position sizes. When those conditions arrive, the decision becomes mechanical rather than emotional. Most investors fail at this step not because they cannot identify the opportunity, but because the emotional state during a crisis is precisely the wrong one for decisive action. Pre-commitment, rules, and prepared cash are the solutions.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 16 ============ -->
+<article class="model" id="m16">
+  <div class="model-header">
+    <span class="model-num">16</span>
+    <h3>Avoid Stupidity <em>Rather Than Seek Brilliance</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>It is remarkable how much long-term advantage people like us have gotten by trying to be consistently not stupid, instead of trying to be very intelligent.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The investor's task is asymmetric. A single catastrophic error can erase decades of accumulated gains; no single brilliant decision can substitute for sustained competence. Therefore, the practical strategy is to identify the specific behaviors most likely to destroy capital — and refuse to engage in them — rather than to identify the brilliant moves that will produce outsized gains.</p>
+
+  <p>This is inversion applied to investing. The list of investor-destroying behaviors is short and well-documented: excessive leverage, frequent trading, paying high prices for fashionable assets, holding what you do not understand, panic-selling at bottoms, refusing to admit error, chasing recent winners. An investor who systematically avoids these is already in the top decile of practitioners — not by being clever, but by being consistently not-stupid.</p>
+
+  <h4>Why this is hard</h4>
+  <p>The temptation is always to do something brilliant. The financial industry, the financial media, and one's peers all reward visible activity and pattern-matching to celebrated past trades. The disciplined avoidance of stupidity is invisible and unrewarded in the short run. It is rewarded only over the long run, by the absence of catastrophe.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Write down the specific behaviors you commit to never engaging in. Examples: never use margin to buy securities; never put more than X% of net worth in any single position; never invest in anything you cannot explain to an intelligent friend in five minutes; never trade based on a recent news headline. Treat these as bright lines, not guidelines. The principal value of bright lines is that they do not require willpower in the moment of temptation — the decision has already been made.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 17 ============ -->
+<article class="model" id="m17">
+  <div class="model-header">
+    <span class="model-num">17</span>
+    <h3>A Wonderful Business <em>at a Fair Price</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>A great business at a fair price is superior to a fair business at a great price.</p>
+    <cite>— Documented public remark, often attributed to Munger's influence on Buffett</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The earlier value-investing tradition, inherited from Benjamin Graham, emphasized buying mediocre businesses at deep discounts to their net asset value — the "cigar butt" approach, where the investor gets one more good puff before discarding the business. Munger's primary intellectual contribution to Berkshire was the persuasion that this approach, while mathematically sound on individual transactions, scales poorly and produces only mediocre long-term compounding.</p>
+
+  <p>The superior approach is to identify a wonderful business — one with durable competitive advantages, high returns on capital, and capable management — and pay a fair (not necessarily cheap) price for it. Such a business, held for decades, compounds at its underlying rate of return on capital. The fair price paid at entry becomes irrelevant against the value created over the holding period.</p>
+
+  <h4>The mathematics</h4>
+  <p>A business earning 20% on invested capital, with reinvestment opportunities, will compound shareholder wealth at approximately 20% per year regardless of whether you paid 12× or 14× earnings at entry. The exit price will be set by the same dynamics; the holding-period return is largely the business's underlying compounding rate. A mediocre business at a cheap price, by contrast, produces a one-time bump if the discount closes but reverts to mediocre compounding thereafter.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>When evaluating a potential investment, separate two questions. First: is this a wonderful business — durable moat, high return on capital, honest management, capital allocation discipline? Second: is the price fair given those characteristics? Reject investments where the answer to the first question is no, regardless of how attractive the price. Accept investments where the answer to the first is yes and the price is merely reasonable. The "wonderful business at a great price" appears occasionally, but it is too rare a target to wait for indefinitely.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 18 ============ -->
+<article class="model" id="m18">
+  <div class="model-header">
+    <span class="model-num">18</span>
+    <h3>The Power <em>of Incentives</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Never, ever, think about something else when you should be thinking about the power of incentives.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Incentives are the most reliable predictor of behavior in any human system. They are more reliable than stated values, more reliable than published mission statements, more reliable than the rhetoric of leadership. Show me the incentive and I will show you the outcome, almost without exception.</p>
+
+  <p>This is true at every scale. The salesperson compensated on volume sells volume. The mutual fund manager evaluated quarterly thinks quarterly. The regulator whose career depends on industry approval regulates lightly. The doctor paid per procedure performs procedures. None of these people are necessarily dishonest. They are operating rationally within the incentive structures presented to them. The structures, not the individuals, produce the outcomes.</p>
+
+  <h4>Why this matters for analysis</h4>
+  <p>When evaluating any organization, any decision, any forecast, examine the incentives of the people involved. The CEO whose bonus depends on next year's earnings will manage for next year's earnings. The analyst whose career depends on access to a company will write favorable reports about that company. The advisor compensated on assets under management will recommend you stay invested. None of this requires bad intent; the structure produces the behavior.</p>
+
+  <div class="example">
+    <div class="example-label">Applied — the FedEx night-shift problem</div>
+    <p>An often-cited Munger example: FedEx for years could not reliably get its overnight package-sorting completed on time. Managers tried scolding, motivational speeches, threats. None worked. The breakthrough came when FedEx changed the night-shift workers' pay from hourly to per-shift — they could go home as soon as the sort was finished. The problem disappeared overnight, literally. The incentive structure had been wrong; the workers were behaving rationally given the prior structure; changing the incentive changed the outcome.</p>
+  </div>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>In any organization or system you participate in or invest in, identify the incentive structure operating on each significant party. Ask whether the structure rewards the behavior you actually want. If not, do not be surprised when you get behavior the structure rewards instead of behavior the official mission statement requires. Fix the structure, or expect the behavior.</p>
+  </div>
+</article>
+
+<hr class="divider">
+
+<!-- ============ PART V ============ -->
+<section class="part-header">
+  <div class="part-label">Part Five</div>
+  <h2>Life <em>Principles</em></h2>
+  <div class="divider"></div>
+  <p class="description">The broader principles Munger articulated for living well — applicable to careers, relationships, and the long arc of a serious life, drawn from his commencement addresses, interviews, and decades of public commentary.</p>
+</section>
+
+<!-- ============ MODEL 19 ============ -->
+<article class="model" id="m19">
+  <div class="model-header">
+    <span class="model-num">19</span>
+    <h3>Avoid Envy, Resentment, <em>and Self-Pity</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Generally speaking, envy, resentment, revenge and self-pity are disastrous modes of thought. Self-pity gets pretty close to paranoia, and paranoia is one of the most difficult things to reverse. You do not want to drift into self-pity.</p>
+    <cite>— USC Law School commencement, 2007</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Of all the cognitive and emotional patterns that destroy human flourishing, three are particularly destructive and particularly common: envy of others' success, resentment of perceived injustice, and self-pity about one's own circumstances. Each feels temporarily satisfying. Each, sustained over years, corrodes character and produces nothing of value.</p>
+
+  <p>The deep observation is that these three patterns are choices. They are not facts about the external world; they are dispositions of the mind, and they can be refused. The person who refuses envy — who declines to compare themselves to others — gains the energy that envy would have consumed. The person who refuses resentment frees themselves to focus on what they can change. The person who refuses self-pity retains agency. These refusals are difficult but available.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>When you notice envy, resentment, or self-pity arising, label it explicitly. The labeling itself is most of the cure — these patterns operate primarily when they are unrecognized. Once recognized, ask: what good will this thought produce if I sustain it? In nearly every case, the honest answer is "none," and the disposition can be set aside in favor of something more useful.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 20 ============ -->
+<article class="model" id="m20">
+  <div class="model-header">
+    <span class="model-num">20</span>
+    <h3>Be Reliable, Useful, <em>and Trustworthy</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The simplest formula for a successful career is also the most underrated: do what you said you would do, do it well, and do it honestly. Reliability compounds because it makes others want to work with you. Usefulness compounds because it makes others want to recommend you. Trustworthiness compounds because it removes friction from every transaction and every relationship.</p>
+
+  <p>This is unglamorous advice. It does not involve secret techniques or insider knowledge. It involves doing the obvious things consistently over decades. But the obvious things, done consistently, are rare — which is why doing them produces returns wildly disproportionate to their apparent difficulty.</p>
+
+  <h4>Why this is hard</h4>
+  <p>It is not difficult to be reliable for a week, useful on one project, or trustworthy in one situation. It is difficult to be all three, consistently, when no one is watching, year after year. The temptations to cut corners, to over-promise, to shade the truth in one's own favor are continuous. The discipline is the refusal of these small concessions, accumulated over a career.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Treat every commitment as a debt to be paid. Treat every relationship as a long-term position rather than a one-time transaction. Treat your reputation as the asset it actually is — slow to build, easily damaged, impossible to fake. Over enough time, the cumulative compound of these dispositions produces a position in the world that no amount of cleverness could have produced by other means.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 21 ============ -->
+<article class="model" id="m21">
+  <div class="model-header">
+    <span class="model-num">21</span>
+    <h3>Spend Each Day Trying <em>to Be Wiser</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>Spend each day trying to be a little wiser than you were when you woke up. Day by day, and at the end of the day — if you live long enough — most people get what they deserve.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Wisdom compounds, like money. Small additions, made daily, sustained over decades, produce a stock of judgment that no short burst of effort could replicate. The person who learns something new each day, reflects on a misjudgment each week, and integrates a new model each month accumulates, over forty or fifty years, a capacity that is genuinely rare.</p>
+
+  <p>The principle is also a quiet refutation of the modern obsession with shortcuts and life hacks. There is no shortcut to wisdom. There is only the daily, unspectacular practice of learning, reflecting, and refusing to repeat one's prior errors. The trajectory is invisible day-to-day and unmistakable over decades.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>At the end of each day, identify one thing you learned, one mistake you made, and one model you used well or poorly. Write them down if writing helps; reflect on them if reflection is enough. The point is not the medium. The point is the deliberate practice of noticing, which compounds into the meta-skill of self-correction over time.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 22 ============ -->
+<article class="model" id="m22">
+  <div class="model-header">
+    <span class="model-num">22</span>
+    <h3>Read <em>Constantly</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>In my whole life, I have known no wise people who didn't read all the time — none, zero.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Reading is the cheapest available access to the lifetime of expensive learning accumulated by other people. The biography lets you live an extra life. The science book delivers the synthesis of careers of laboratory work. The history book exposes the patterns that, when repeated, you will recognize. The cost is hours; the benefit is the avoidance of errors others have already paid for.</p>
+
+  <p>The wise people Munger observed throughout his life were uniformly readers — not occasional readers, not productivity-tracking readers, but constant readers. They read across disciplines, read deeply, and read with the expectation that what they read would change how they thought. This is the most consistently identifiable trait of the people who reach old age with their minds intact and their judgment improved.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Read every day. Read books, not just feeds or articles, because books require sustained attention that compounds into deeper learning. Read across disciplines — biography, history, science, philosophy, narrative — not just whatever your professional field demands. The compounding is invisible in any given year and overwhelming over decades.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 23 ============ -->
+<article class="model" id="m23">
+  <div class="model-header">
+    <span class="model-num">23</span>
+    <h3>Earn <em>What You're Paid</em></h3>
+  </div>
+
+  <div class="quote">
+    <p>The best way to get what you want is to deserve what you want.</p>
+    <cite>— Documented public remark</cite>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The shortest path to durable success is to actually be worth what you wish to be paid. This sounds tautological, but it is not. Much of human ambition is directed at appearing to deserve what one wants rather than at actually deserving it. The marketing, the networking, the personal branding — these are substitutes for the underlying competence they hope to signal. They work imperfectly in the short run and fail consistently in the long run.</p>
+
+  <p>The alternative discipline is to invest, repeatedly and unglamorously, in becoming the person who can genuinely deliver. This is slower than the signaling shortcut. It is more reliable, and it is the only approach that produces durable satisfaction at the destination.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>For whatever you wish to achieve — career advancement, professional recognition, the trust of a partner, the affection of a community — ask whether you actually deserve it. If yes, the achievement will come, perhaps not on your preferred schedule but reliably. If no, address the underlying gap before pursuing the recognition. The shortcuts work occasionally; the underlying deserving works always.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 24 ============ -->
+<article class="model" id="m24">
+  <div class="model-header">
+    <span class="model-num">24</span>
+    <h3>Take the High Road — <em>It's Less Crowded</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>Ethical shortcuts are tempting because their short-run rewards are real. Cheating works occasionally; lying serves immediate purposes; cutting corners produces short-term efficiencies. The reason to refuse these is not primarily moral, though the moral reason is sound. The pragmatic reason is that the high road is less crowded — fewer people have the discipline to stay on it consistently — and therefore the returns to remaining there compound disproportionately.</p>
+
+  <p>The person whose reputation for integrity is unimpeachable, sustained over decades, occupies a position that few others can claim. Opportunities flow to them disproportionately. Trust accumulates around them. The cost of having insisted on the high road every time the low road beckoned is measured in foregone small advantages; the benefit is measured in the cumulative value of a position no one else has built.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>When facing a decision where the low road offers an obvious short-term gain, do the calculation honestly. Almost always, the long-run cost of damaged reputation, lost trust, or compromised judgment exceeds the short-run benefit. The high road is not merely the morally correct choice — over a long enough horizon, it is the more profitable one as well.</p>
+  </div>
+</article>
+
+<!-- ============ MODEL 25 ============ -->
+<article class="model" id="m25">
+  <div class="model-header">
+    <span class="model-num">25</span>
+    <h3>Live to 100 <em>and Still Want to Know More</em></h3>
+  </div>
+
+  <h4>What it means</h4>
+  <p>The final principle is the synthesis of all the preceding ones. The objective is not to die rich, or famous, or admired. The objective is to live well across a very long horizon — to remain curious into old age, to retain the capacity for new ideas, to maintain relationships that matter, to compound learning until the day the lights go out.</p>
+
+  <p>Munger himself modeled this principle to his final decade. He continued reading widely, continued attending shareholder meetings, continued giving public talks, continued investing — into his late nineties — and continued asking questions whose answers he genuinely wanted to know. There was nothing performative about it. He simply remained interested, and the interest produced the longevity of mind that interest reliably produces.</p>
+
+  <p>The hidden message is that wealth, fame, and the rest are means rather than ends. The end is a life that, in retrospect, was worth living — and the test of that, applied at any age, is whether you are still genuinely curious about what comes next.</p>
+
+  <div class="application">
+    <div class="application-label">How to apply it</div>
+    <p>Build a life whose components — work, relationships, study, contribution — would still interest you if you removed all external validation. The components that remain interesting under that test are the ones worth investing in. The components that depend on external validation will not sustain you across the decades. Choose accordingly, while there is still time to choose.</p>
+  </div>
+</article>
+
+<hr class="divider">
+
+<!-- ============ EPILOGUE ============ -->
+<section class="epilogue">
+  <h2>A Closing Word</h2>
+  <p class="lede">If you take only one thing from this collection, take this: thinking carefully is a discipline, not a talent.</p>
+  <p>The mental models in this compendium are not secret. They are not proprietary. They are not the inheritance of a particular IQ or background or temperament. They are the accumulated reasoning tools of human civilization, available to anyone willing to study them and apply them with the patience required.</p>
+  <p>What separates the people who use them well from the people who do not is not intellectual horsepower. It is the willingness to do the slow, daily, unglamorous work of actually thinking carefully when thinking carefully is difficult — when emotion is loud, when the crowd is moving, when the easy answer is socially rewarded. Most failures of judgment are not failures of intelligence. They are failures of discipline.</p>
+  <p>The compounding works on intellectual capability the same way it works on financial capital. A small advantage, sustained over decades, becomes an enormous one. The person who reads three hours a day, reflects honestly on their errors, refuses envy and self-pity, takes simple ideas seriously, and avoids the predictable categories of stupidity — this person, given a normal lifespan, becomes someone meaningfully different from the person who did none of those things. The gap is built one ordinary day at a time.</p>
+  <p>That is the entire prescription, and it is sufficient.</p>
+  <div class="signature">— A Reference, Compiled in Tribute</div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-mark">finis</div>
+  <div class="footer-attribution">The Munger Compendium · A Reference Document<br>Synthesized from public writings, speeches, and shareholder communications · 1924–2023</div>
+  <div class="footer-disclaimer">
+    This document is an educational synthesis of Charles T. Munger's documented mental models, principles, and frameworks. The boxed quotations are documented quotes; the synthesis prose draws on his analytical style and recorded thinking but is not a verbatim transcript. Readers are encouraged to consult the original sources — particularly <em>Poor Charlie's Almanack</em>, the 1995 Harvard Law speech "The Psychology of Human Misjudgment," and the annual Berkshire Hathaway and Daily Journal shareholder meetings — for the unfiltered material on which this reference is based.
+  </div>
+</footer>
+
+</body>
+</html>
